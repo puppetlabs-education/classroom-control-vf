@@ -47,7 +47,7 @@ node default {
     ensure  => present,
     owner   => root,
     group   => root,
-    mode    => 0644,
+    mode    => '0644',
     path    => '/etc/motd',
     content => "I'm unique.",
     }
