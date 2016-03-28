@@ -43,12 +43,11 @@ node default {
   # Example:
   #   class { 'my_class': }
   notify { "Hello, my name is ${::hostname}": }
-  file { motd:
+  file { \etc\motd :
     ensure  => present,
     owner   => root,
     group   => root,
     mode    => 0644,
-    path    => '/etc/motd'
     content => "I'm unique.",
     }
 }
