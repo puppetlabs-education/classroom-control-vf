@@ -1,6 +1,7 @@
 # `classroom-control-vf`
 
 This is the classroom control repository for the Virtual Fundamentals class.
+Travis CI is added: https://travis-ci.org/dbrandwein/classroom-control-vf
 
 ## Usage
 
