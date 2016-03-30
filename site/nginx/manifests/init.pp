@@ -9,7 +9,7 @@ class nginx {
 
   package { 'nginx' :
     ensure => present,
-    before => [ File[ '/etc/nginx/nginx.conf' ], File[ '/etc/nginx/conf.d/default.conf' ],
+    before => [ File[ '/etc/nginx/nginx.conf' ], File[ '/etc/nginx/conf.d/default.conf' ] ],
   }
   
   file { '/var/www' :
