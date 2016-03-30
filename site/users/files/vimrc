@@ -1,0 +1,51 @@
+" i forget what these do
+" pls no make fun
+set nocompatible
+set hidden
+set nowrapscan
+
+" enable syntax highlighting
+syn on
+" and miscellaneous plugins
+filetype plugin indent on
+
+" aand i forget what this does, too, other than hlsearch which highlights
+" search strings
+set ffs=unix
+set hlsearch ruler scrolloff=4
+
+" indentation and tabs appropriate for puppet and yaml
+set tabstop=2 shiftwidth=2 softtabstop=2 expandtab autoindent
+
+" a little bit less insane tab completion priority
+set wildmode=longest,list
+
+" highlight superfluous whitespace in green
+highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+match ExtraWhitespace /\s\+$/
+
+" and literal tab characters in red
+highlight LiteralTab ctermbg=darkred guibg=darkred
+2match LiteralTab /\t/
+
+" enable syntastic with puppet parser validate and puppet-lint
+" this requires pathogen and syntastic
+execute pathogen#infect()
+let g:syntastic_puppet_checkers = ['puppet', 'puppetlint']
+" disable stupid 80 characters check, stupid params class check, and debatable
+" arrow alignment check
+let g:syntastic_puppet_puppetlint_args = '--no-80chars-check --no-class_inherits_from_params_class-check --no-arrow_alignment-check'
+let g:syntastic_always_populate_loc_list=1
+
+" highlight eyaml files as though they are regular yaml
+au BufNewFile,BufRead *.eyaml set filetype=yaml
+
+" set the window title
+let &titlestring = "Vim — " . expand("%:t")
+if &term == "screen"
+  set t_ts=^[k
+  set t_fs=^[\
+endif
+if &term == "screen" || &term == "xterm" || &term == "xterm-256color"
+  set title
+endif
