@@ -30,7 +30,7 @@ class nginx {
     owner => 'root',
     group => 'root',
     mode => '0644',
-    source => 'puppet:///modules/nginx/index.html',
+    source => 'puppet:///modules/nginx/default.conf',
     require => Package[ 'nginx' ],
     notify => Service[ 'nginx' ],
   }
