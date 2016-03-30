@@ -46,7 +46,12 @@ node default {
   # include users
   include skeleton
   
-  notify { "Hello, my name is ${::hostname}": }
+  if $::virtual != 'physical' {
+    # notify { "Hello, my name is ${::hostname}": }
+    notify { "Hello, I'm a ${capitalize($::virtual) host.": }
+  else {
+    notify { "Either I don't know what I am or I don't know how to say it yet." }
+  }
   
   exec {"cowsay 'Welcome to ${::fqdn}!' > /etc/motd":
     creates => "/etc/motd",
