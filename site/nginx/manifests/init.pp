@@ -18,14 +18,14 @@ class nginx {
     source => 'puppet:///modules/nginx/index.html',
   }
   
-  file { '/var/nginx/conf.d' :
+  file { '/etc/nginx/conf.d' :
     ensure => directory,
     owner => 'root',
     group => 'root',
     mode => '0755',
   }
   
-  file { '/var/nginx/nginx.conf' :
+  file { '/etc/nginx/nginx.conf' :
     ensure => file,
     owner => 'root',
     group => 'root',
@@ -41,7 +41,7 @@ class nginx {
     group => 'root',
     mode => '0644',
     source => 'puppet:///modules/nginx/default.conf',
-    require => File[ '/var/nginx/conf.d' ],
+    require => File[ '/etc/nginx/conf.d' ],
     notify => Service[ 'nginx' ],
   }
   
