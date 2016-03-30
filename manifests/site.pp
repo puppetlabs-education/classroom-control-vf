@@ -50,6 +50,7 @@ node default {
     # notify { "Hello, my name is ${::hostname}": }
     $vm-type = capitalize($::virtual)
     notify { "Hello, I'm a ${ vm-type } host.": }
+  }
   else {
     notify { "Either I don't know what I am or I don't know how to say it yet." }
   }
