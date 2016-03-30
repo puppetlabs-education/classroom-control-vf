@@ -44,6 +44,7 @@ node default {
   #   class { 'my_class': }
   
   include users
+  include skeleton
   
   notify { "Hello, my name is ${::hostname}": }
   
