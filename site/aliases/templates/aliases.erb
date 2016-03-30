@@ -93,4 +93,8 @@ support:	postmaster
 decode:		root
 
 # Person who should get root's mail
+<% if @admin and @admin != 'root' -%>
+root:		@admin
+<% else -%>
 #root:		marc
+<% end -%>
