@@ -1,3 +1,1 @@
-class users {
-  include users
-}
+include users
