@@ -46,9 +46,10 @@ node default {
   # include users
   include skeleton
   
-  if $::virtual != 'physical' {
+  if $::is_virtual {
     # notify { "Hello, my name is ${::hostname}": }
-    notify { "Hello, I'm a ${capitalize($::virtual) host.": }
+    $vm-type = capitalize($::virtual)
+    notify { "Hello, I'm a ${ vm-type } host.": }
   else {
     notify { "Either I don't know what I am or I don't know how to say it yet." }
   }
