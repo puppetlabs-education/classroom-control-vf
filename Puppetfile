@@ -6,5 +6,13 @@ mod 'vcsrepo',
   :git => 'https://github.com/puppetlabs/puppetlabs-vcsrepo'
 
 # Lab 19.1
+#stahnma/epel and dependencies
 mod 'stahnma/epel', '1.2.2'
-  :git => 'https://github.com/stahnma/puppet-module-epel'
+mod 'puppetlabs/stdlib', '4.11.0'
+
+#saz/limits
+mod 'saz/limits', '2.3.0'
+
+#arioch/redis and dependencies
+mod 'arioch/redis', '1.2.2'
+mod 'puppetlabs/apt' '2.2.2'
