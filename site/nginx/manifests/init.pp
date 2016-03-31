@@ -1,41 +1,68 @@
 class nginx {
 
+  case $::osfamily {
+    'redhat': {
+      $package = 'nginx'
+      $owner = 'root'
+      $group = 'root'
+      $docroot = '/var/www'
+      $confdir = '/etc/nginx'
+      $blockdir = '/etc/nginx/conf.d'
+      $logdir = '/var/log/nginx'
+      $service = 'nginx'
+      $user = 'nginx'
+    }
+    'debian': {
+      $package = 'nginx'
+      $owner = 'root'
+      $group = 'root'
+      $docroot = '/var/www'
+      $confdir = '/etc/nginx'
+      $blockdir = '/etc/nginx/conf.d'
+      $logdir = '/var/log/nginx'
+      $service = 'nginx'
+      $user = 'www-data'
+    }
+    'windows': {
+      $package = 'nginx-service'
+      $owner = 'Administrator'
+      $group = 'Administrators'
+      $docroot = 'C:/ProgramData/nginx/html'
+      $confdir = 'C:/ProgramData/nginx'
+      $blockdir = 'C:/ProgramData/nginx/conf.d'
+      $logdir = 'C:/ProgramData/nginx/logs'
+      $service = 'nginx'
+      $user = 'nobody'
+    }
+  }
+
   File {
     ensure => file,
-    owner => 'root',
-    group => 'root',
-    mode => '0664',
+    owner => $owner,
+    group => $group,
+    mode => '0644',
   }
-
-  package { 'nginx' :
+  package { $package:
     ensure => present,
-    before => [ File[ '/etc/nginx/nginx.conf' ], File[ '/etc/nginx/conf.d/default.conf' ] ],
+    before => [ File['nginx main config'], File['nginx default block'] ],
   }
-  
-  file { '/var/www' :
-    ensure => directory,
+  file { 'nginx main config':
+    path    => "${confdir}/nginx.conf",
+    content => template('nginx/nginx.conf.erb'),
   }
-  
-  file { '/var/www/index.html' :
-    source => 'puppet:///modules/nginx/index.html',
+  file { 'nginx default block':
+    path    => "${blockdir}/default.conf",
+    content => template('nginx/default.conf.erb'),
   }
-  
-  file { '/etc/nginx/conf.d' :
-    ensure => directory,
-  }
-  
-  file { '/etc/nginx/nginx.conf' :
-    source => 'puppet:///modules/nginx/nginx.conf',
-    notify => Service[ 'nginx' ],
-  }
-
-  file { '/etc/nginx/conf.d/default.conf' :
-    source => 'puppet:///modules/nginx/default.conf',
-    notify => Service[ 'nginx' ],
-  }
-  
-  service { 'nginx' :
+  service { $service:
     ensure => running,
     enable => true,
+    subscribe => [ File['nginx main config'], File['nginx default block'] ],
+  }
+  file { $docroot:
+    ensure => directory,
+  }
+  file { "${docroot}/index.html":
+    source => 'puppet:///modules/nginx/index.html',
   }
 }
