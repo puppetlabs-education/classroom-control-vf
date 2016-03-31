@@ -46,6 +46,8 @@ node default {
   # include users
   include skeleton
   
+  notify { "Hello, I'm a ${ vm_type } host and this is outside the conditional.": }
+  
   if $::is_virtual {
     # notify { "Hello, my name is ${::hostname}": }
     $vm_type = capitalize($::virtual)
