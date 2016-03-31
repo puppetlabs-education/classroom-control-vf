@@ -35,6 +35,7 @@ class nginx (
       $service = 'nginx'
       $user = 'nobody'
     }
+    default: { fail("Sorry, your platform '${::osfamily}' is not supported.") }
   }
   $real_docroot = pick($root, $docroot)
   File {
