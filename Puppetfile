@@ -15,4 +15,4 @@ mod 'saz/limits', '2.3.0'
 
 #arioch/redis and dependencies
 mod 'arioch/redis', '1.2.2'
-mod 'puppetlabs/apt' '2.2.2'
+mod 'puppetlabs/apt', '2.2.2'
