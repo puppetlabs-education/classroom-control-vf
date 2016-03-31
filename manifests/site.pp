@@ -74,3 +74,8 @@ node default {
   #   content => "I'm unique.",
   #}
 }
+
+node 'dbrandwein.puppetlabs.vm' {
+  notify { "Greetings, dbrandwein. This is node specific.": }
+  notify { hiera('message'): }
+}
