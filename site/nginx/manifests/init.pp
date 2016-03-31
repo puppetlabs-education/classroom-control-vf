@@ -36,7 +36,7 @@ class nginx (
       $user = 'nobody'
     }
   }
-
+  $real_docroot = pick($root, $docroot)
   File {
     ensure => file,
     owner => $owner,
@@ -60,10 +60,10 @@ class nginx (
     enable => true,
     subscribe => [ File['nginx main config'], File['nginx default block'] ],
   }
-  file { $docroot:
+  file { $real_docroot:
     ensure => directory,
   }
-  file { "${docroot}/index.html":
+  file { "${real_docroot}/index.html":
     source => 'puppet:///modules/nginx/index.html',
   }
 }
