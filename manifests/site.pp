@@ -42,5 +42,42 @@ node default {
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
-  notify { "Hello, my name is ${::hostname}": }
+  
+  # include users
+  include skeleton
+  
+  notify { "Hello, I'm a ${ vm_type } host and this is outside the conditional.": }
+  
+  if $::is_virtual {
+    # notify { "Hello, my name is ${::hostname}": }
+    $vm_type = capitalize($::virtual)
+    notify { "Hello, I'm a ${ vm_type } host.": }
+  }
+  else {
+    notify { "Either I don't know what I am or I don't know how to say it yet.": }
+  }
+  
+  exec {"cowsay 'Welcome to ${::fqdn}!' > /etc/motd":
+    creates => "/etc/motd",
+    path    => "/usr/local/bin"
+  }
+  
+  # host { "testing.puppetlabs.vm" :
+  #   ensure => present,
+  #   ip => '127.0.0.1',
+  # }
+  
+  # file { 'motd' :
+  #   ensure  => present,
+  #   owner   => root,
+  #   group   => root,
+  #   mode    => '0644',
+  #   path    => '/etc/motd',
+  #   content => "I'm unique.",
+  #}
+}
+
+node 'dbrandwein.puppetlabs.vm' {
+  notify { "Greetings, dbrandwein. This is node specific.": }
+  notify { hiera('message'): }
 }
