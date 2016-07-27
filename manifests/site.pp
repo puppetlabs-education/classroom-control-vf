@@ -55,11 +55,11 @@ ensure => present,
 ip => '127.0.0.1',
 }
 
-#include users
-#include skeleton
+include users
+include skeleton
 
-node default {
-notify {"Hello my Name is  ${::fqdn}":}
-}
+#node default {
+#notify {"Hello my Name is  ${::fqdn}":}
+#}
 
 }
