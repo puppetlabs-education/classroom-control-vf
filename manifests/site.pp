@@ -45,10 +45,9 @@ node default {
   notify { "Hello, my name is ${::hostname} and i am ${::rkancha}": }
   
   
-exec { 'motd':
-  path    => '/usr/local/bin'
-  command => "cowsay 'Welcome to ${::fqdn}!' > /etc/motd",
- unless  => "/bin/test `/bin/grep -i 'Welcome to ${::fqdn}!'/etc/motd`",
+exec { 'updatedb':
+  path    => '/usr/bin',
+  creates => '/var/lib/mlocate/mlocate.db',
 }
 
 }
