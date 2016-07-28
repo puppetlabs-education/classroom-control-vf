@@ -88,5 +88,3 @@ include skeleton
 #node default {
 #notify {"Hello my Name is  ${::fqdn}":}
 #}
-
-}
