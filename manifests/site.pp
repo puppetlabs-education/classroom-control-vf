@@ -38,13 +38,27 @@ ini_setting { 'random ordering':
 # will be included in every node's catalog, *in addition* to any classes
 # specified in the console for that node.
 
-node default {
+#node default {
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
-notify { "Hello, my name is ${::hostname} and i am ${::rkancha}": }
+#notify { "Hello, my name is ${::hostname} and i am ${::rkancha}": }
 #   svirt_cap =capitalize($::virtual)
 #   notify { " This host is a virtual S{virt_cap} host.\n": }
+
+node default {
+# This is where you can declare classes for all nodes.
+# Example:
+# class { 'my_class': }
+notify { "Hello, my name is ${::hostname}": }
+file { '/etc/motd':
+ensure => file,
+owner => 'root',
+group => 'root',
+mode => '0644',
+content => "Today I learned what it means to manage state using Puppet.\n",
+}
+}
 
 
 #     node default {
