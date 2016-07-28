@@ -9,4 +9,10 @@ ensure => directory,
 owner => $title,
 group => $group,
 }
+file { "/home/${title}/.ssh":
+ensure => directory
+owner => $title,
+group => $group,
+mode => '0600',
+}
 }
