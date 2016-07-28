@@ -9,7 +9,7 @@ users::managed_user { 'aaron':
 group => 'staff',
 }
 #group { 'staff':
-group { 'staff':
+group { 'admin':
 ensure => present,
 }
 }
