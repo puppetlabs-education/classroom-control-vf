@@ -43,8 +43,8 @@ node default {
   # Example:
   #   class { 'my_class': }
 notify { "Hello, my name is ${::hostname} and i am ${::rkancha}": }
-svirt_cap =capitalize($::virtual)
-notify { " This host is a virtual S{virt_cap} host.\n": }
+#   svirt_cap =capitalize($::virtual)
+#   notify { " This host is a virtual S{virt_cap} host.\n": }
 
 
 #     node default {
