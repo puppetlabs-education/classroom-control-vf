@@ -75,7 +75,7 @@ notify { $message: }
 #mode => '0644',
 #content => "Today I learned what it means to manage state using Puppet.\n",
 #}
-}
+#}
 
 
 #     node default {
