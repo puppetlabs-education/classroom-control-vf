@@ -64,6 +64,9 @@ node default {
 # Example:
  #class { 'my_class': }
 notify { "Hello, my name is ${::hostname}": }
+$message = hiera ( 'message', 'No message found')
+notify { $message: }
+}
 
 #file { '/etc/motd':
 #ensure => file,
