@@ -38,9 +38,69 @@ ini_setting { 'random ordering':
 # will be included in every node's catalog, *in addition* to any classes
 # specified in the console for that node.
 
-node default {
+#node default {
+# This is where you can declare classes for all nodes.
+# Example:
+# class { 'my_class': }
+#$message = hiera('message')
+#notify { $message: }
+#}
+
+#node default {
+#notify {"Hello my Name is  ${::fqdn}":}
+#}
+
+
+#node default {
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
-  notify { "Hello, my name is ${::hostname}": }
+#notify { "Hello, my name is ${::hostname} and i am ${::rkancha}": }
+#   svirt_cap =capitalize($::virtual)
+#   notify { " This host is a virtual S{virt_cap} host.\n": }
+
+node default {
+# This is where you can declare classes for all nodes.
+# Example:
+ #class { 'my_class': }
+ class { 'nginx':
+root => '/var/www/html',
 }
+notify { "Hello, my name is ${::hostname}": }
+$message = hiera ( 'message', 'No message found')
+notify { $message: }
+}
+
+#file { '/etc/motd':
+#ensure => file,
+#owner => 'root',
+#group => 'root',
+#mode => '0644',
+#content => "Today I learned what it means to manage state using Puppet.\n",
+#}
+#}
+
+
+#     node default {
+# This is where you can declare classes for all nodes.
+# Example:
+# class { 'my_class': }
+#     if $::virtual != 'physical' {
+#     $vmname = capitalize($::virtual)
+#     notify { "This is a ${vmname} virtual machine.": }
+#     }
+#     }  
+  
+exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motd":
+path => '/usr/bin:/usr/local/bin',
+creates => '/etc/motd',
+}
+
+host { 'testing.puppetlabs.vm':
+ensure => present,
+ip => '127.0.0.1',
+}
+
+include users
+include skeleton
+
