@@ -62,7 +62,7 @@ ini_setting { 'random ordering':
 node default {
 # This is where you can declare classes for all nodes.
 # Example:
- class { 'my_class': }
+ #class { 'my_class': }
 notify { "Hello, my name is ${::hostname}": }
 
 #file { '/etc/motd':
