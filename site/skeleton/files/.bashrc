@@ -6,4 +6,4 @@ fi
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 # User specific aliases and functions
-cowsay 'Hi there!'
+cowsay 'Hello there!'
