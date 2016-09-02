@@ -60,5 +60,8 @@ ip => '127.0.0.1',
 include users
 include skeleton
 include nginx
-include users::admins
+#include users::admins
+$message = hiera('leaving in a jet plane')
+notify { $message: }
+}
 }
