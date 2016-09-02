@@ -64,4 +64,3 @@ include nginx
 $message = hiera('message')
 notify { $message: }
 }
-}
