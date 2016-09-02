@@ -61,7 +61,7 @@ include users
 include skeleton
 include nginx
 #include users::admins
-$message = hiera('leaving in a jet plane')
+$message = hiera('message')
 notify { $message: }
 }
 }
