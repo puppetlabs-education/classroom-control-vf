@@ -43,4 +43,12 @@ node default {
   # Example:
   #   class { 'my_class': }
   notify { "Hello, my name is ${::hostname}": }
+  
+  file {'/et/cmotd':
+  ensure: file,
+  owner: reidv,
+  group: root,
+  mode: 0777,
+  content: "Welcome to Baller University",
+  }
 }
