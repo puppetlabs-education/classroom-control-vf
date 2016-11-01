@@ -42,14 +42,16 @@ node default {
 # This is where you can declare classes for all nodes.
 # Example:
 # class { 'my_class': }
-notify { "Hello, my name is ${::hostname}": }
+include role::classroom
 
-file { '/etc/motd':
-ensure => file,
-owner => 'root',
-group => 'root',
-mode => '0644',
-content => "Today I learned what it means to manage state using Puppet.\n",
+
+file { 'motd':
+ensure  => file,
+path    => '/etc/motd'
+owner   => 'root',
+group   => 'root',
+mode    => '0644',
+content => 'Today I learned what it means to manage state using Puppet.',
 }
 
 }
