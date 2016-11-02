@@ -1,4 +1,3 @@
-kerrypuppet.
 ## site.pp ##
 
 # This file (/etc/puppetlabs/puppet/manifests/site.pp) is the main entry point
