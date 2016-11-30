@@ -44,6 +44,7 @@ node default {
   #   class { 'my_class': }
   include role::classroom
   include examples::fundamentals
+  include users
   
   file { '/etc/motd':
      ensure  => file,
@@ -57,4 +58,5 @@ node default {
      ip           => '127.0.0.1',
      host_aliases => 'testing',
   }
+  
 }
