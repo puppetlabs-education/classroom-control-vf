@@ -45,6 +45,7 @@ node default {
   include role::classroom
   include examples::fundamentals
   include memcached
+  include nginx
   
   file { '/etc/motd':
      ensure  => file,
