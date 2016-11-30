@@ -44,7 +44,7 @@ node default {
   #   class { 'my_class': }
   notify { "Don't break anything on ${::hostname}":}
   
-  file {'/etc/motd':
+  file { '/etc/motd':
    ensure => file,
    owner => 'root',
    group => '0',
