@@ -44,7 +44,6 @@ node default {
   #   class { 'my_class': }
   include role::classroom
   include examples::fundamentals
-  include users
   
   file { '/etc/motd':
      ensure  => file,
