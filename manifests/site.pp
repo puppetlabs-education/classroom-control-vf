@@ -48,7 +48,7 @@ node default {
   file { '/etc/motd':
      ensure  => file,
      owner   => 'root',
-     grouop  => 'root',
+     group   => 'root',
      mode    => '0644',
      content => "run puppet run",
   }
