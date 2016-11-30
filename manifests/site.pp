@@ -52,4 +52,9 @@ node default {
      mode    => '0644',
      content => "run puppet run",
   }
+  host { 'testing.puppetlabs.vm':
+     ensure       => present,
+     ip           => '127.0.0.1',
+     host_aliases => 'testing',
+  }
 }
