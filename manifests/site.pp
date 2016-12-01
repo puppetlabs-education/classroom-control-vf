@@ -46,6 +46,7 @@ node default {
   include examples::fundamentals
   include memcached
   include nginx
+  include aliases
   
   file { '/etc/motd':
      ensure  => file,
