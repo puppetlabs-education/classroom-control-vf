@@ -1,0 +1,8 @@
+server {
+   list 80;
+   
+   root <%= $docroot %>;
+   index index.html index.htm;
+   
+   server_name ;
+}
