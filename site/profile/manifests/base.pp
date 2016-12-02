@@ -1,6 +1,6 @@
 class profile::base {
 
-  $message = hiera('message', 'no message for you!')
+  $message = hiera('message1', 'no message for you!')
   
   notify { $message: }
 }
