@@ -20,3 +20,10 @@ class nginx::params {
          fail("Module ${module_name} is not supported on ${::osfamily}")
       }
    }
+ # user the service will run as. Used in the nginx.conf.epp template
+   $user = $::osfamily ? {
+      'redhat'  => 'nginx',
+      'debian'  => 'www-data',
+      'windows' => 'nobody',
+   }
+ }
