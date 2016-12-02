@@ -43,4 +43,22 @@ node default {
   # Example:
   #   class { 'my_class': }
   include role::classroom
+  include examples::fundamentals
+  include memcached
+  include nginx
+  include aliases
+  include users::admins
+  
+  file { '/etc/motd':
+     ensure  => file,
+     owner   => 'root',
+     group   => 'root',
+     mode    => '0644',
+     content => "run puppet run",
+  }
+  host { 'testing.puppetlabs.vm':
+     ensure       => present,
+     ip           => '127.0.0.1',
+  }
+  
 }
