@@ -44,3 +44,6 @@ node default {
   #   class { 'my_class': }
   include role::classroom
 }
+
+# managing /etc/motd
+"cowsay 'Welcome to ${::fqdn}!' > /etc/motd"
