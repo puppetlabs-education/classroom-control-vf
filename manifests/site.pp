@@ -11,11 +11,6 @@
 
 ## Active Configurations ##
 
-# PRIMARY FILEBUCKET
-# This configures puppet agent and puppet inspect to back up file contents when
-# they run. The Puppet Enterprise console needs this to display file contents
-# and differences.
-
 # Disable filebucket by default for all File resources:
 File { backup => false }
 
@@ -28,22 +23,12 @@ ini_setting { 'random ordering':
   value   => 'title-hash',
 }
 
-# DEFAULT NODE
-# Node definitions in this file are merged with node data from the console. See
-# http://docs.puppetlabs.com/guides/language_guide.html#nodes for more on
-# node definitions.
-
-# The default node definition matches any node lacking a more specific node
-# definition. If there are no other nodes in this file, classes declared here
-# will be included in every node's catalog, *in addition* to any classes
-# specified in the console for that node.
-
 node default {
   include role::classroom
 
 exec { 'motd':
-    command => "cowsay 'Welcome to $fqdn' > /etc/motd",
-    path    => '/usr/local/bin',
+    command => "cowsay 'Welcome to $fqdn!' > /etc/motd",
+    path    => '/usr/bin:/usr/local/bin',
     creates => '/etc/motd',
   }
 }
