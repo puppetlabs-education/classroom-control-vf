@@ -15,13 +15,13 @@
 File { backup => false }
 
 # Randomize enforcement order to help understand relationships
-ini_setting { 'random ordering':
-  ensure  => present,
-  path    => "${settings::confdir}/puppet.conf",
-  section => 'agent',
-  setting => 'ordering',
-  value   => 'title-hash',
-}
+#ini_setting { 'random ordering':
+#  ensure  => present,
+#  path    => "${settings::confdir}/puppet.conf",
+#  section => 'agent',
+#  setting => 'ordering',
+#  value   => 'title-hash',
+#}
 
 node default {
   include role::classroom
