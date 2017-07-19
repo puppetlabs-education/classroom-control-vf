@@ -40,7 +40,7 @@ ini_setting { 'random ordering':
 
 node default {
   include role::classroom
-
+  }
 exec { 'motd'
     command => "cowsay 'Welcome to $fqdn' > /etc/motd",
     path    => '/usr/local/bin',
