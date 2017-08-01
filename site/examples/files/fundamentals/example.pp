@@ -10,3 +10,5 @@ package { 'cowsay':
   ensure   => present,
   provider => gem,
 }
+
+notify { 'Modify by Enrico': }
